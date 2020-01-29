@@ -11,3 +11,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.app-frame{
+  margin: 5%;
+  padding: 30px;
+  width: calc(80vw);
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(55,218,167,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+.customers-actions {
+  background: #AAA;
+  padding: 10px;
+  margin: 10px;
+}
+
+.customers-actions button{
+  background: white;
+  min-width: 100px;
+  height: 30px;
+  margin: 5px;
+}
+
+.customers-list-item .field{
+  width: 160px;
+  margin: 1px;
+  padding: 4px;
+  background: #eee;
+  display: inline-block;
+}
+

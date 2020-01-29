@@ -1,19 +1,22 @@
 {
-    "customers": [
-        {
-            "dni": "2555",
-            "name": "Hitler", 
-            "age" : 35
-        },
-        {
-            "dni": "4522256",
-            "name": "Judini", 
-            "age" : 40
-        },
-        {
-            "dni": "4578899636",
-            "name": "Martinolli", 
-            "age" : 35
-        }
-    ]
+  "customers": [
+    {
+      "id": "1",
+      "dni": "4522",
+      "name": "Adolf Hitler",
+      "age": 38
+    },
+    {
+      "id": "2",
+      "dni": "4522256",
+      "name": "Judini",
+      "age": 40
+    },
+    {
+      "id": "3",
+      "dni": "4578899636",
+      "name": "Martinolli",
+      "age": 35
+    }
+  ]
 }

@@ -1,3 +1,12 @@
+
+## NOTE
+
+1. Install json-server library global with npm 
+2. Run npm start or yarn start in one terminal
+3. Run json-server --watch db.json --port portnumber into another terminal inside the project folder.
+4. Enjoy
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

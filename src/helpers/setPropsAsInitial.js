@@ -6,7 +6,7 @@ export const setPropsAsInitial = WrappedComponent =>(
             return <WrappedComponent 
                 {...this.props} 
                 initialValues={this.props}
-                 />
+                enableReinitialize/>
         }
     }
 );

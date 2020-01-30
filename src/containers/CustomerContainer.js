@@ -8,6 +8,7 @@ import CustomerEdit from '../components/CustomerEdit'
 import CustomerData from '../components/CustomerData'
 import {fetchCustomers} from '../actions/fetchCustomers'
 import {updateCustomer} from '../actions/updateCustomer'
+import {deleteCustomer} from '../actions/deleteCustomer'
 export class CustomerContainer extends Component {
 
     componentDidMount() {
@@ -17,7 +18,6 @@ export class CustomerContainer extends Component {
     
     
     handleSubmit = values => {
-        console.log(JSON.stringify(values));
         const {id} = values;
         return this.props.updateCustomer(id,values)
     }
@@ -30,23 +30,35 @@ export class CustomerContainer extends Component {
         this.handleOnBack();
     }
 
+    handleOnDelete = id =>{
+        console.log("handle on delete");
+        this.props.deleteCustomer(id).then(v=> this.handleOnBack());
+
+    }
+
+    renderCustomerControl = (isEdit,isDelete)=>{
+        
+        if(this.props.customer){
+            const CustomerControl = isEdit ?  CustomerEdit : CustomerData; 
+            return <CustomerControl 
+                onSubmit={this.handleSubmit}
+                onSubmitSuccess={this.handleOnSubmitSuccess}
+                onBack={this.handleOnBack} 
+                {...this.props.customer}
+                isDeleteAllow={!!isDelete}
+                onDelete={ this.handleOnDelete}/>
+        }
+
+        return null;
+    }
+
     renderBody = ()=> (
         <Route path="/customers/:dni/edit" children={
-            ({ match })=> {
-
-                if(this.props.customer){
-                    const CustomerControl = match ?  CustomerEdit : CustomerData; 
-                    return <CustomerControl 
-                        onSubmit={this.handleSubmit}
-                        onSubmitSuccess={this.handleOnSubmitSuccess}
-                        onBack={this.handleOnBack} 
-                        {...this.props.customer}/>
-                }
-
-                return null
-
-                
-            } 
+            ({ match: isEdit })=> (
+                  <Route path="/customers/:dni/del" children={
+                   ({match: isDelete}) => this.renderCustomerControl(isEdit,isDelete)
+                  } />  
+                )
         } />
     )
 
@@ -68,6 +80,7 @@ CustomerContainer.propTypes = {
     customer: PropTypes.object,
     fetchCustomers: PropTypes.func.isRequired,
     updateCustomer: PropTypes.func.isRequired,
+    deleteCustomer:PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state,props) => ({
@@ -76,5 +89,6 @@ const mapStateToProps = (state,props) => ({
 
 export default withRouter(connect(mapStateToProps, {
     fetchCustomers,
-    updateCustomer
+    updateCustomer,
+    deleteCustomer
 })(CustomerContainer)) 

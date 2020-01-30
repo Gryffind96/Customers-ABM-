@@ -10,6 +10,11 @@ import {getCustomers} from '../selectors/customers';
 
 class CustomersContainer extends Component {
   
+    componentDidMount() {
+        if(this.props.customers.length === 0)
+             this.props.fetchCustomers();
+    }
+
     handleAddNew = ()=>{
         this.props.history.push('/customers/new');
     }
@@ -28,9 +33,7 @@ class CustomersContainer extends Component {
         </div>
     );
 
-    componentDidMount() {
-        this.props.fetchCustomers();
-    }
+  
     
 
     render() {
